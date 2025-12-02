@@ -103,19 +103,19 @@ Install these libraries via Arduino IDE Library Manager:
 * `DHT sensor library` by **Adafruit**
 
 ### 2. Generate Keys
-1.  Flash `src/KeyGenerator/KeyGenerator.ino` to your Node 1, Node 2, and Collector boards individually.
+1.  Flash `src/keygen/keygen.ino` to your Node 1, Node 2, and Collector boards individually.
 2.  Open Serial Monitor.
 3.  **Save the output!** These are your unique cryptographic identities.
 
 ### 3. Setup Collector (Gateway)
-1.  Open `src/CollectorNode/CollectorNode.ino`.
+1.  Open `src/collector/collector.ino`.
 2.  Update `myPrivKey` with the Collector's Private Key.
 3.  Update `node1PubKey` and `node2PubKey` with the Nodes' Public Keys.
 4.  Flash the board.
 5.  **Important:** Note the `WiFi Channel` printed on the Serial Monitor.
 
 ### 4. Setup Senders (Nodes)
-1.  Open `src/SenderNode_1/SenderNode_1.ino` (or Node 2).
+1.  Open `src/node1/node1.ino` (or Node 2).
 2.  Update `WIFI_CHANNEL` to match the Collector's channel.
 3.  Update `collectorPubKey` with the Collector's Public Key.
 4.  Update `myPrivKey` with the Node's Private Key.
