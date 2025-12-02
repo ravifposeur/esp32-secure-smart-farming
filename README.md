@@ -21,28 +21,30 @@ The system consists of Sensor Nodes communicating securely with a central Collec
 
 ```mermaid
 graph TD
-    %% Node Styles
-    classDef sensor fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
-    classDef gateway fill:#fff9c4,stroke:#fbc02d,stroke-width:2px;
-    classDef cloud fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,stroke-dasharray: 5 5;
-
+    %% --- STYLING (High Contrast Monochrome) ---
+    classDef white fill:#ffffff,stroke:#000000,stroke-width:2px,color:#000000;
+    classDef grey  fill:#e0e0e0,stroke:#000000,stroke-width:2px,color:#000000;
+    classDef black fill:#000000,stroke:#000000,stroke-width:2px,color:#ffffff;
+    
+    %% --- NODES ---
     subgraph "Local Sensor Network (ESP-NOW)"
-        N1["NODE 1<br/>(Sender)"]:::sensor
-        N2["NODE 2<br/>(Sender)"]:::sensor
+        N1("NODE 1<br/>(Sender)"):::white
+        N2("NODE 2<br/>(Sender)"):::white
     end
 
-    G["COLLECTOR<br/>(Gateway)"]:::gateway
-    R((WiFi Router))
-    B(Blynk Cloud):::cloud
-    App["Mobile App<br/>Dashboard"]
+    G("COLLECTOR<br/>(Gateway)"):::grey
+    R(("WiFi Router")):::white
+    B("Blynk Cloud"):::black
+    App["Mobile App<br/>Dashboard"]:::white
 
-    %% Data Flow
+    %% --- CONNECTIONS ---
     N1 -- "Encrypted (ECC + ChaCha20)" --> G
     N2 -- "Encrypted (ECC + ChaCha20)" --> G
     
-    G -- "TLS / SSL (Port 443)" --> R
-    R -- "Internet" --> B
-    B <--> App
+    G -- "WiFi Station" --> R
+    R -- "TLS / SSL (Port 443)" --> B
+    B -. "Internet" .-> App
+    App -. "Control/Monitor" .-> B
 ```
 
 ## Hardware & Wiring
@@ -51,7 +53,7 @@ graph TD
 * 3x ESP32 Development Boards (DOIT DevKit V1 recommended)
 * 2x DHT11 Temperature & Humidity Sensors
 * 2x YL-69 Capacitive Soil Moisture Sensors
-* Power Source (5V USB / Li-Po Battery)
+* 2x Half Breadboard (400 pins)
 
 ### Pinout Configuration (Sender Nodes)
 
