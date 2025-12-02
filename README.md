@@ -11,7 +11,7 @@ A multi-node, secure IoT architecture designed for smart farming applications. T
 
 * **Hybrid Encryption:** Uses `Curve25519` for ECDH key exchange and `ChaCha20-Poly1305` for authenticated payload encryption.
 * **High Performance:** Utilizes **ESP-NOW** (Connectionless Wi-Fi) for ultra-low latency and power efficiency on sensor nodes.
-* **Centralized Gateway:** A Collector node aggregates data and forwards it to the cloud via TLS/SSL.
+* **Centralized Gateway:** A Collector node aggregates data and forwards it to the cloud via TLS/SSL.s
 * **Dynamic Configuration:** Integrated **WiFiManager** allows easy Wi-Fi credential setup without hardcoding.
 * **Multi-Node Support:** Designed to handle multiple sender nodes (Node 1 & Node 2) with distinct identity keys.
 
@@ -27,14 +27,14 @@ graph TD
     classDef cloud fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,stroke-dasharray: 5 5;
 
     subgraph "Local Sensor Network (ESP-NOW)"
-        N1[NODE 1<br/>(Sender)]:::sensor
-        N2[NODE 2<br/>(Sender)]:::sensor
+        N1["NODE 1<br/>(Sender)"]:::sensor
+        N2["NODE 2<br/>(Sender)"]:::sensor
     end
 
-    G[COLLECTOR<br/>(Gateway)]:::gateway
+    G["COLLECTOR<br/>(Gateway)"]:::gateway
     R((WiFi Router))
     B(Blynk Cloud):::cloud
-    App[Mobile Dashboard]
+    App["Mobile App<br/>Dashboard"]
 
     %% Data Flow
     N1 -- "Encrypted (ECC + ChaCha20)" --> G
@@ -132,6 +132,6 @@ Create a Template in Blynk Console with the following Datastreams:
 | | Humidity | V4 | Double | 0 - 100 |
 | | Soil Moisture | V5 | Integer | 0 - 100 |
 
-## 📄 License
+## License
 
 This project is open-source and licensed under the [MIT License](LICENSE).
